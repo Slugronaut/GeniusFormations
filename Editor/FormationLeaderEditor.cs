@@ -1,13 +1,12 @@
-﻿using UnityEditor;
-using GeniusFormations;
-using UnityEngine.AI;
+﻿using UnityEngine.AI;
 using UnityEngine;
+using UnityEditor;
 
-namespace GeniusFormationsEditor
+namespace GeniusFormations.Editor
 {
     [CustomEditor(typeof(FormationLeader))]
     [CanEditMultipleObjects]
-    public class FormationLeaderEditor : Editor
+    public class FormationLeaderEditor : UnityEditor.Editor
     {
 
         public override void OnInspectorGUI()

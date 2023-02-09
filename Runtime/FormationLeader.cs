@@ -41,6 +41,11 @@ namespace GeniusFormations
         List<FormationFollower> Followers = new List<FormationFollower>();
         public bool HasFollowers => Followers.Count > 0;
 
+        /// <summary>
+        /// A copy of the list of followers.
+        /// </summary>
+        public FormationFollower[] FollowerList => Followers.ToArray();
+
 
         public bool HasPositionsAvailable => Formation.PositionCount > Followers.Count;
 
@@ -56,11 +61,31 @@ namespace GeniusFormations
             }
         }
 
+        /// <summary>
+        /// Is this leader stopped?
+        /// </summary>
         public bool IsStopped =>
             Agent.isStopped ||
             (!Agent.pathPending && !Agent.hasPath) ||
             (Agent.velocity.sqrMagnitude < 0.1 &&
                 Vector3.Distance(Agent.destination, Agent.transform.position) < Agent.stoppingDistance);
+
+        /// <summary>
+        /// Is this leader and all follower stopped?
+        /// </summary>
+        public bool IsFormationStopped
+        {
+            get
+            {
+                if (!IsStopped) return false;
+                foreach(var fol in Followers)
+                {
+                    if (!fol.IsStopped) return false;
+                }
+                return true;
+            }
+        }
+            
 
         float AgentGroupSpeedModifier
         {

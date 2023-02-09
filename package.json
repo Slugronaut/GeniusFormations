@@ -1,0 +1,20 @@
+{
+  "name": "com.postegames.geniusformations",
+  "version": "1.0.0",
+  "displayName": "PEGGAME - Genius Formations",
+  "description": "Formations system for Unity's NavMesh agents.",
+  "unity": "2022.2",
+  "dependencies": {
+  },
+  "keywords": [
+    "navmesh",
+    "genius",
+    "formation",
+    "formations"
+  ],
+  "author": {
+    "name": "Sluggy",
+    "email": "jcsluggy@gmail.com",
+    "url": "http:/postegames.com"
+  }
+}

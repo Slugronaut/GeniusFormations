@@ -72,17 +72,25 @@ namespace GeniusFormations
         #endregion
 
 
+
+        private void OnDisable()
+        {
+            if (Leader != null)
+                RemoveLeader(Leader);
+        }
+
         /// <summary>
         /// 
         /// </summary>
         public void LateUpdate()
         {
             if (!HasLeader) return;
+            Agent.speed = NavAgentDefaultSpeed * AgentGroupSpeedModifier;
             if (!Leader.IsStopped)
             {
                 StoppedThisFrame = false;
                 Agent.SetDestination(Leader.GetFormationPosition(PositionIndex, LookAhead));
-                Agent.speed = NavAgentDefaultSpeed * AgentGroupSpeedModifier;
+                
             }
             else
             {
@@ -126,7 +134,8 @@ namespace GeniusFormations
         /// <returns></returns>
         public void RemoveLeader(FormationLeader leader)
         {
-            Assert.IsNotNull(leader);
+            if (Leader == null) return;
+
             if (Leader != leader)
                 throw new UnityException(leader.name + " is not the current FormationLeader of " + name);
 
